@@ -30,7 +30,9 @@ const storage = multer.diskStorage({
 
 // Create the Multer instance with the configured storage options
 const upload = multer({ storage: storage });
-
+postRouter.get('/',(req,res)=>{
+  res.status(200).send('Hello Insta')
+})
 postRouter.post('/post', upload.single("image") ,(req,res)=>{
     // const file = req.file;
     // let newId = idCount + 1;
