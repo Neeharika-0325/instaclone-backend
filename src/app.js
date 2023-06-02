@@ -3,14 +3,18 @@ const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const postRoutes = require('./postRoutes')
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
-app.use("/", );
+app.use('/uploads', express.static('uploads'));
 
-mongoose.connect(process.env.DB_URL+process.env.DB_NAME)
+
+app.use("/", postRoutes);
+
+mongoose.connect(process.env.DATABASE_URL)
 .then(()=>{
     console.log("Connected to DB");
 })
