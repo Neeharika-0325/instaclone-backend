@@ -2,6 +2,7 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
+const path = require("path");
 const cors = require("cors");
 const postRoutes = require('./postRoutes')
 
@@ -11,6 +12,12 @@ app.use(express.urlencoded({extended: false}));
 
 app.use('/uploads', express.static('uploads'));
 
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
+    res.header("Access-Control-Allow-Headers", "*");
+    next();
+});
 
 app.use("/", postRoutes);
 
